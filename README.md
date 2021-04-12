@@ -10,23 +10,18 @@ Science and Algorithm:
 
 ### adjust_ERA5_profile_RF06_Tr2p3_2020-04-01.ipynb:
 
-· Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
+- Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
           qt is total water mixing ratio.
           Note: ctrl refers to the initial ERA5 profile.
-          
-· Choose inversion height, zi: compute inversion height based on ERA ctrl profiles using min of d(RH)/dz*d(THETAL)/dz. 
-                               Alternatively, use MODIS CTH.
-
-· Build Tl(z) and qt(z) in two parts: FT and BL
-
-
-· First FT: 
+- Choose inversion height, zi: compute inversion height based on ERA ctrl profiles using min of d(RH)/dz*d(THETAL)/dz. 
+                                Alternatively, use MODIS CTH.
+- Build Tl(z) and qt(z) in two parts: FT and BL
+- First FT: 
 
    o Let L_FT be some height above the inversion where ERA ctrl profiles don't "feel" the BL anymore, say 500m. 
    
    o For z>zi+L_FT:
-   
-![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
+   ![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
    o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion. 
      This would be: Tl[zind2] = np.polyval(np.polyfit(z[zind], Tl_ctrl[zind], 1), z[zind2]) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
@@ -37,10 +32,8 @@ Science and Algorithm:
    o The top of the region where you're fitting the line is also arbitrary.  I chose  zi+3*L_FT as a reasonable first guess.
 
    o To ensure moisture profile sharpening above Zinv:
-   
-![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
-
-![image](https://user-images.githubusercontent.com/28571068/114359502-e51fdd80-9b28-11eb-8b77-2c3397b62526.png)
+   ![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
+   ![image](https://user-images.githubusercontent.com/28571068/114359502-e51fdd80-9b28-11eb-8b77-2c3397b62526.png)
 
 where delta_qt_inv is the difference between FT qt and BL qt near the inversion level.    
 
