@@ -34,7 +34,7 @@ Science and Algorithm:
 
    o To ensure moisture profile sharpening above Zinv:
    
-   ![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
+   ![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png),  and   
    ![image](https://user-images.githubusercontent.com/28571068/114359502-e51fdd80-9b28-11eb-8b77-2c3397b62526.png)
 
     where delta_qt_inv is the difference between FT qt and BL qt near the inversion level.    
@@ -44,41 +44,39 @@ Science and Algorithm:
 
   o The whole temperature and moisture profiles within the BL are:
   
-  ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png)
+  ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png),  and   
   ![image](https://user-images.githubusercontent.com/28571068/114354023-8e170a00-9b22-11eb-8887-9a104dd91545.png)
   
 
-· How to solve:
+- How to solve:
 
-- takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
+  o takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
 
-- follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
+  o follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
 
-o Make a second function that:
+  o Make a second function that:
 
-- takes the inputs: 
+    o takes the inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and Zinv along with LWP_target.
 
-- Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and Zinv along with LWP_target.
+    o calls the first function to compute adj Tl(z) and adj qt(z)
 
-- calls the first function to compute adj Tl(z) and adj qt(z)
+    o computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
 
-- computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
+    o outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
 
-- outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
+      ![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
 
-![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
+      where Trho is density temeprature:
 
-where Trho is density temeprature:
-
-![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
+      ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
   
-and:
+      and:
 
-![image](https://user-images.githubusercontent.com/28571068/114360809-4ac09980-9b2a-11eb-80e7-68c0175d7ad6.png)
+      ![image](https://user-images.githubusercontent.com/28571068/114360809-4ac09980-9b2a-11eb-80e7-68c0175d7ad6.png)
 
-F is equal to 0.3
+      F is equal to 0.3
 
-o Automate the process of determining qt_inv and Tl_inv by using a function like "fmin" that will vary those inputs and choose the values that minimize the output function. 
+  o Automate the process of determining qt_inv and Tl_inv by using a function like "fmin" that will vary those inputs and choose the values that minimize the output function. 
 
 
 ###########
@@ -87,8 +85,6 @@ o Automate the process of determining qt_inv and Tl_inv by using a function like
 
 A few changes have been made:
 
-o Make sure that in the FT, d(qt) / d(z) is always negative or zero.
-
-o Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
-
-o In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
+- Make sure that in the FT, d(qt) / d(z) is always negative or zero.
+- Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
+- In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
