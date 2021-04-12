@@ -1,4 +1,4 @@
-# adjust-ERA5-profiles
+# Adjusting ERA5 profiles
 
 This code sharpens ERA5 temperature and moisture profiles near the inversion level.
 
@@ -18,7 +18,9 @@ Main approach:
 
    o Let L_FT be some height above the inversion where ERA profiles don't "feel" the BL anymore, say 500m. 
    
-   o For z>zi+L_FT, Tl(z) = Tl_era(z).  Similar for qt(z)
+   o For z>zi+L_FT:
+   
+![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
    o For zi < z < zi+L_FT, fit a line to the ERA Tl/qt profiles away from the inversion, and extrapolate down to the inversion.  
      In matlab, this would be Tl(zind2) = polyval( polyfit(z(zind),Tl_era(zind),1), z(zind2) ) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
@@ -35,13 +37,9 @@ Main approach:
   
   ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png)
 
-
-  o Similarly, qt(z) = max( qt_era(z), qt_ML)
-
+  ![image](https://user-images.githubusercontent.com/28571068/114354023-8e170a00-9b22-11eb-8887-9a104dd91545.png)
 
 · How to solve:
-
-o Make a function in python/matlab that:
 
 § takes inputs: Tl_era(z), qt_era(z), qt_ML, Tl_ML and ERA Zinv, and
 
@@ -60,11 +58,8 @@ o Make a second function that:
 § outputs a (positive) number that tells how well the resulting profile matches LWP_target while preserving the vertical integrals of the ERA Tl and qt profiles.
  
  ![image](https://user-images.githubusercontent.com/28571068/114353655-1ea11a80-9b22-11eb-8096-4d759cf7be45.png)
-
 where Trho is density temeprature:
 
 ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
-
-
   
 o Automate the process of determining qt_ML and Tl_ML by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
