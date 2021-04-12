@@ -55,6 +55,13 @@ o Make a second function that:
 § computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
 
 § outputs a (positive) number that tells how well the resulting profile matches LWP_target while preserving the vertical integrals of the ERA Tl and qt profiles.
-  output = fac1*(LWP_target - LWP)^2 + fac2*( \int_z rho*(Tl(z) - Tl_era(z)) dz )^2 + fac3*( TWP - TWP_era )^2 + fac4*( Zinv0 - Zinv )^2
+ 
+ ![image](https://user-images.githubusercontent.com/28571068/114353655-1ea11a80-9b22-11eb-8096-4d759cf7be45.png)
+
+where Trho is density temeprature:
+
+![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
+
+
   
 o Automate the process of determining qt_ML and Tl_ML by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
