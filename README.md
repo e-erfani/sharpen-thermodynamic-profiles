@@ -21,6 +21,7 @@ Science and Algorithm:
    o Let L_FT be some height above the inversion where ERA ctrl profiles don't "feel" the BL anymore, say 500m. 
    
    o For z>zi+L_FT:
+   
    ![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
    o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion. 
@@ -32,18 +33,18 @@ Science and Algorithm:
    o The top of the region where you're fitting the line is also arbitrary.  I chose  zi+3*L_FT as a reasonable first guess.
 
    o To ensure moisture profile sharpening above Zinv:
+   
    ![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
    ![image](https://user-images.githubusercontent.com/28571068/114359502-e51fdd80-9b28-11eb-8b77-2c3397b62526.png)
 
-where delta_qt_inv is the difference between FT qt and BL qt near the inversion level.    
+    where delta_qt_inv is the difference between FT qt and BL qt near the inversion level.    
 
 
-· Within the BL
+- Within the BL
 
   o The whole temperature and moisture profiles within the BL are:
   
   ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png)
-
   ![image](https://user-images.githubusercontent.com/28571068/114354023-8e170a00-9b22-11eb-8887-9a104dd91545.png)
   
 
