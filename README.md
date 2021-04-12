@@ -31,7 +31,10 @@ Main approach:
 
 · Within the BL
 
-  o The whole temperature profile within the BL is Tl(z) = min( Tl_era(z), Tl_ML)
+  o The whole temperature and moisture profiles within the BL are:
+  
+  ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png)
+
 
   o Similarly, qt(z) = max( qt_era(z), qt_ML)
 
