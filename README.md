@@ -3,7 +3,12 @@
 This code sharpens ERA5 temperature and moisture profiles near the inversion level.
 
 
-Main approach:
+Science and Algorithm:
+
+
+###########
+
+adjust_ERA5_profile_RF06_Tr2p3_2020-04-01.ipynb:
 
 · Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
           qt is total water mixing ratio.
@@ -35,6 +40,10 @@ Main approach:
    
 ![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
 
+![image](https://user-images.githubusercontent.com/28571068/114359502-e51fdd80-9b28-11eb-8b77-2c3397b62526.png)
+
+where delta_qt_inv is the difference between FT qt and BL qt near the inversion level.    
+
 
 · Within the BL
 
@@ -43,6 +52,7 @@ Main approach:
   ![image](https://user-images.githubusercontent.com/28571068/114353870-5f992f00-9b22-11eb-971e-3b4117bb60bd.png)
 
   ![image](https://user-images.githubusercontent.com/28571068/114354023-8e170a00-9b22-11eb-8887-9a104dd91545.png)
+  
 
 · How to solve:
 
@@ -68,4 +78,23 @@ where Trho is density temeprature:
 
 ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
   
+and:
+
+![image](https://user-images.githubusercontent.com/28571068/114360809-4ac09980-9b2a-11eb-80e7-68c0175d7ad6.png)
+
+F is equal to 0.3
+
 o Automate the process of determining qt_inv and Tl_inv by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
+
+
+###########
+
+adjust_ERA5_profile_RF06_Tr2p3_2020-04-12.ipynb:
+
+A few changes have been made:
+
+o Make sure that in the FT, d(qt) / d(z) is always negative or zero.
+
+o Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
+
+o In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
