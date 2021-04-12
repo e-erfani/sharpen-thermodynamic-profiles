@@ -61,17 +61,17 @@ Science and Algorithm:
      - computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
      - outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
 
-      ![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
+     ![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
 
-      where Trho is density temeprature:
+     where Trho is density temeprature:
 
-      ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
+     ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
   
-      and:
+     and:
 
-      ![image](https://user-images.githubusercontent.com/28571068/114360809-4ac09980-9b2a-11eb-80e7-68c0175d7ad6.png)
+     ![image](https://user-images.githubusercontent.com/28571068/114360809-4ac09980-9b2a-11eb-80e7-68c0175d7ad6.png)
 
-      F is equal to 0.3
+     F is equal to 0.3
 
   o Automate the process of determining qt_inv and Tl_inv by using a function like "fmin" that will vary those inputs and choose the values that minimize the output function. 
 
