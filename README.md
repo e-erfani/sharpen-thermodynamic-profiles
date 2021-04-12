@@ -28,8 +28,8 @@ Science and Algorithm:
    
 ![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
-   o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion.  
-     In matlab, this would be Tl(zind2) = polyval( polyfit(z(zind),Tl_ctrl(zind),1), z(zind2) ) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
+   o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion. 
+     This would be: Tl[zind2] = np.polyval(np.polyfit(z[zind], Tl_ctrl[zind], 1), z[zind2]) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
      and zind2 has zi<z<zi+L_FT.  
    
    o Note: You might need to blend smoothly across zi+L_FT to avoid discontinuities.  
