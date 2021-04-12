@@ -30,6 +30,10 @@ Main approach:
    
    o The top of the region where you're fitting the line is also arbitrary.  I chose  zi+3*L_FT as a reasonable first guess.
 
+   o To ensure moisture profile sharpening above Zinv:
+   
+![image](https://user-images.githubusercontent.com/28571068/114354720-755b2400-9b23-11eb-9e33-8bf7f2b58b9c.png)
+
 
 · Within the BL
 
@@ -41,25 +45,26 @@ Main approach:
 
 · How to solve:
 
-§ takes inputs: Tl_era(z), qt_era(z), qt_ML, Tl_ML and ERA Zinv, and
+§ takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
 
-§ follows the above scheme to produce as outputs Tl(z) and qt(z).  
+§ follows the above scheme to produce outputs adj Tl(z) and ajd qt(z).  
 
 o Make a second function that:
 
 § takes the inputs: 
 
-§ Tl_era(z), qt_era(z), qt_ML, Tl_ML and Zinv along with LWP_target.
+§ Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and Zinv along with LWP_target.
 
-§ calls the first function to compute Tl(z) and qt(z)
+§ calls the first function to compute adj Tl(z) and adj qt(z)
 
 § computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
 
 § outputs a (positive) number that tells how well the resulting profile matches LWP_target while preserving the vertical integrals of the ERA Tl and qt profiles.
- 
- ![image](https://user-images.githubusercontent.com/28571068/114353655-1ea11a80-9b22-11eb-8096-4d759cf7be45.png)
+
+![image](https://user-images.githubusercontent.com/28571068/114354455-1f867c00-9b23-11eb-86a2-db3606f2cda4.png)
+
 where Trho is density temeprature:
 
 ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
   
-o Automate the process of determining qt_ML and Tl_ML by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
+o Automate the process of determining qt_inv and Tl_inv by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
