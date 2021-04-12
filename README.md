@@ -8,7 +8,7 @@ Science and Algorithm:
 
 ###########
 
-adjust_ERA5_profile_RF06_Tr2p3_2020-04-01.ipynb:
+### adjust_ERA5_profile_RF06_Tr2p3_2020-04-01.ipynb:
 
 · Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
           qt is total water mixing ratio.
@@ -89,7 +89,7 @@ o Automate the process of determining qt_inv and Tl_inv by using a function like
 
 ###########
 
-adjust_ERA5_profile_RF06_Tr2p3_2020-04-12.ipynb:
+### adjust_ERA5_profile_RF06_Tr2p3_2020-04-12.ipynb:
 
 A few changes have been made:
 
