@@ -72,7 +72,7 @@ o Make a second function that:
 
 - outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
 
-![image](https://user-images.githubusercontent.com/28571068/114356020-fb2b9f00-9b24-11eb-9ff7-d524ead48939.png)
+![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
 
 where Trho is density temeprature:
 
