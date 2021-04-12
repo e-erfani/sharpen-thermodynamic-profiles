@@ -61,9 +61,7 @@ o Make a second function that:
 
 § outputs a (positive) number that tells how well the resulting profile matches LWP_target while preserving the vertical integrals of the ERA Tl and qt profiles.
 
-![image](https://user-images.githubusercontent.com/28571068/114355543-717bd180-9b24-11eb-8fc6-940bbf049b16.png)
-![image](https://user-images.githubusercontent.com/28571068/114355525-6b85f080-9b24-11eb-9678-f157e7584346.png)
-
+![image](https://user-images.githubusercontent.com/28571068/114356020-fb2b9f00-9b24-11eb-9ff7-d524ead48939.png)
 
 where Trho is density temeprature:
 
