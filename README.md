@@ -5,10 +5,11 @@ This code sharpens ERA5 temperature and moisture profiles near the inversion lev
 
 Main approach:
 
-· Inputs: Tl_era = T_era + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
+· Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
           qt is total water mixing ratio.
-
-· Choose inversion height, zi: compute inversion height based on ERA profiles using min of d(RH)/dz*d(THETAL)/dz. 
+          Note: ctrl refers to the initial ERA5 profile.
+          
+· Choose inversion height, zi: compute inversion height based on ERA ctrl profiles using min of d(RH)/dz*d(THETAL)/dz. 
                                Alternatively, use MODIS CTH.
 
 · Build Tl(z) and qt(z) in two parts: FT and BL
@@ -16,14 +17,14 @@ Main approach:
 
 · First FT: 
 
-   o Let L_FT be some height above the inversion where ERA profiles don't "feel" the BL anymore, say 500m. 
+   o Let L_FT be some height above the inversion where ERA ctrl profiles don't "feel" the BL anymore, say 500m. 
    
    o For z>zi+L_FT:
    
 ![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
-   o For zi < z < zi+L_FT, fit a line to the ERA Tl/qt profiles away from the inversion, and extrapolate down to the inversion.  
-     In matlab, this would be Tl(zind2) = polyval( polyfit(z(zind),Tl_era(zind),1), z(zind2) ) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
+   o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion.  
+     In matlab, this would be Tl(zind2) = polyval( polyfit(z(zind),Tl_ctrl(zind),1), z(zind2) ) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
      and zind2 has zi<z<zi+L_FT.  
    
    o Note: You might need to blend smoothly across zi+L_FT to avoid discontinuities.  
@@ -47,7 +48,7 @@ Main approach:
 
 § takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
 
-§ follows the above scheme to produce outputs adj Tl(z) and ajd qt(z).  
+§ follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
 
 o Make a second function that:
 
@@ -59,7 +60,7 @@ o Make a second function that:
 
 § computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
 
-§ outputs a (positive) number that tells how well the resulting profile matches LWP_target while preserving the vertical integrals of the ERA Tl and qt profiles.
+§ outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
 
 ![image](https://user-images.githubusercontent.com/28571068/114356020-fb2b9f00-9b24-11eb-9ff7-d524ead48939.png)
 
