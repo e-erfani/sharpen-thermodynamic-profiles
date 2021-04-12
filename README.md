@@ -56,21 +56,21 @@ where delta_qt_inv is the difference between FT qt and BL qt near the inversion 
 
 · How to solve:
 
-§ takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
+- takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
 
-§ follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
+- follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
 
 o Make a second function that:
 
-§ takes the inputs: 
+- takes the inputs: 
 
-§ Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and Zinv along with LWP_target.
+- Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and Zinv along with LWP_target.
 
-§ calls the first function to compute adj Tl(z) and adj qt(z)
+- calls the first function to compute adj Tl(z) and adj qt(z)
 
-§ computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
+- computes the LWP of the resulting profile by computing LWC using saturation adjustment at each height, and
 
-§ outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
+- outputs a (positive) number that tells how well the resulting adj profile matches LWP_target while preserving the vertical integrals of the ERA ctrl Tl and qt profiles.
 
 ![image](https://user-images.githubusercontent.com/28571068/114356020-fb2b9f00-9b24-11eb-9ff7-d524ead48939.png)
 
@@ -84,7 +84,7 @@ and:
 
 F is equal to 0.3
 
-o Automate the process of determining qt_inv and Tl_inv by using a function like MATLAB's fminsearch that will vary those inputs and choose the values that minimize the output function. 
+o Automate the process of determining qt_inv and Tl_inv by using a function like "fmin" that will vary those inputs and choose the values that minimize the output function. 
 
 
 ###########
