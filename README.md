@@ -82,6 +82,6 @@ Science and Algorithm:
 
 A few changes have been made:
 
-- Make sure that in the FT, d(qt) / d(z) is always negative or zero.
+- Make sure that in the FT, d(qt) / d(z) is always negative or zero right above the inversion level.
 - Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
 - In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
