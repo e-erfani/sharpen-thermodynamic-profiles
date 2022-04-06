@@ -1,6 +1,10 @@
-# Adjusting ERA5 profiles
+# Adjusting thermodynamic vertical profiles of reanalysis data
 
-This code sharpens ERA5 temperature and moisture profiles near the inversion level.
+This code utilizes satellite microwave observations of liquid water path (LWP) to modify reanalysis (in particular ERA5) temperature and moisture profiles. 
+This is done by sharpening the profiles near the inversion level and is necessary for nudging the Large Eddy Simulation (LES) experiments. 
+Without sharpening, the LES might not simulate the Stratocumulus cloud layer. This is done by finding the optimized profiles with the LWP equal to observed values.
+
+
 
 
 Science and Algorithm:
