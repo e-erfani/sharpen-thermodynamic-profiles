@@ -11,7 +11,7 @@ Inputs:
 - There are some parameters that can be changed to modify the profiles based on various conditions. Search for the word "parameter" in the code. Some important parameters are: inversion height (Zinv), T @Zinv, qt @Zinv, delta_T @Zinv, delta_qt @Zinv, ...
 
 
-############
+
 # 
 ### Science and Algorithm:
 
@@ -82,7 +82,7 @@ Inputs:
   o Automate the process of determining qt_inv and Tl_inv by using a function like "fmin" that will vary those inputs and choose the values that minimize the output function. 
 
 
-###########
+
 # 
 ### Update, 2020-04-12:
 
@@ -91,7 +91,7 @@ Inputs:
 - In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
 
 
-###########
+
 # 
 ### Update, 2021-04-06:
 
