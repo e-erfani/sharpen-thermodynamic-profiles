@@ -84,7 +84,7 @@ Inputs:
 
 ###########
 # 
-### Update ### 2020-04-12:
+### Update, 2020-04-12:
 
 - Make sure that in the FT, d(qt) / d(z) is always negative or zero right above the inversion level.
 - Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
@@ -93,11 +93,11 @@ Inputs:
 
 ###########
 # 
-### Update ### 2021-04-06:
+### Update, 2021-04-06:
 
-- f
-- find a constant-in-time geostrophic wind profile (ug and vg) that give a wind speeds (u and v) close to that specified in the soundings without needing to increase the strength of wind nudging. This is done explicitly above the boundary layer by including forcing due to the effect of large-scale subsidence (W_LS). In the MBL, we use a uniform value down to the surface. This will prevent abrupt jumps in ug and vg when the nudging ends.
+- During the nudging period, qt and T profiles are constant, so it might make sense to make the winds (u and v) constant in time as well, but we would want to avoid having a huge transient when the geostrophic winds start to change at the end of the nudging period. 
+- Since the winds do seem to change a lot through the nudging period, we find constant-in-time geostrophic wind profiles (ug and vg) that give wind speeds close to that specified in the soundings without needing to increase the strength of wind nudging. This is done explicitly above the boundary layer by including forcing due to the effect of large-scale subsidence (W_LS). In the MBL, we use a uniform value down to the surface. This will prevent abrupt jumps in ug and vg when the nudging ends.
 
 ![image](https://user-images.githubusercontent.com/28571068/162072925-216a373f-68f8-41ad-bc0d-b5751ce7001a.png)
 
-- 
+- Sections are added to save the qt, T, u, v, ug, vg profiles to the forcing file.
