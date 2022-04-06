@@ -11,14 +11,10 @@ Inputs:
 - There are some parameters that can be changed to modify the profiles based on various conditions. Search for the word "parameter" in the code. Some important parameters are: inversion height (Zinv), T @Zinv, qt @Zinv, delta_T @Zinv, delta_qt @Zinv, ...
 
 
-
-
+############
+# 
 ### Science and Algorithm:
 
-
-###########
-
-### adjust_ERA5_profile_RF06_Tr2p3_2020-04-01.ipynb:
 
 - Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
           qt is total water mixing ratio.
@@ -87,11 +83,21 @@ Inputs:
 
 
 ###########
-
-### adjust_ERA5_profile_RF06_Tr2p3_2020-04-12.ipynb:
-
-A few changes have been made:
+# 
+### Update ### 2020-04-12:
 
 - Make sure that in the FT, d(qt) / d(z) is always negative or zero right above the inversion level.
 - Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
 - In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
+
+
+###########
+# 
+### Update ### 2021-04-06:
+
+- f
+- find a constant-in-time geostrophic wind profile (ug and vg) that give a wind speeds (u and v) close to that specified in the soundings without needing to increase the strength of wind nudging. This is done explicitly above the boundary layer by including forcing due to the effect of large-scale subsidence (W_LS). In the MBL, we use a uniform value down to the surface. This will prevent abrupt jumps in ug and vg when the nudging ends.
+
+![image](https://user-images.githubusercontent.com/28571068/162072925-216a373f-68f8-41ad-bc0d-b5751ce7001a.png)
+
+- 
