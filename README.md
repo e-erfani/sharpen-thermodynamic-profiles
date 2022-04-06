@@ -1,13 +1,19 @@
 # Adjusting thermodynamic vertical profiles of reanalysis data
 
+### Description:
 This code utilizes satellite microwave observations of liquid water path (LWP) to modify reanalysis (in particular ERA5) temperature and moisture profiles. 
 This is done by sharpening the profiles near the inversion level and is necessary for nudging the Large Eddy Simulation (LES) experiments. 
 Without sharpening, the LES might not simulate the Stratocumulus cloud layer. This is done by finding the optimized profiles with the LWP equal to observed values.
 
+Inputs:
+- Vertical profiles of T, qt, P, LWC, and RH from reanalysis.
+- Microwave LWP.
+- There are some parameters that can be changed to modify the profiles based on various conditions. Search for the word "parameter" in the code. Some important parameters are: inversion height (Zinv), T @Zinv, qt @Zinv, delta_T @Zinv, delta_qt @Zinv, ...
 
 
 
-Science and Algorithm:
+
+### Science and Algorithm:
 
 
 ###########
