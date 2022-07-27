@@ -1,14 +1,22 @@
 # Adjusting thermodynamic vertical profiles of reanalysis data
 
+### Authors:
+- Lead author: Ehsan Erfani @UW
+- Collaborators: MCB group members @UW 
+
+### Requirements:
+- Python3 in Jupyter Notebook (installed by Anaconda).
+- See the beginning of each code for the required Python3 libraries.
+
 ### Description:
 This code utilizes satellite microwave observations of liquid water path (LWP) to modify reanalysis (in particular ERA5) temperature and moisture profiles. 
 This is done by sharpening the profiles near the inversion level and is necessary for nudging the Large Eddy Simulation (LES) experiments. 
 Without sharpening, the LES might not simulate the Stratocumulus cloud layer. This is done by finding the optimized profiles with the LWP equal to observed values.
 
-Inputs:
+### Inputs:
 - Vertical profiles of T, qt, P, LWC, and RH from reanalysis.
 - Microwave LWP.
-- There are some parameters that can be changed to modify the profiles based on various conditions. Search for the word "parameter" in the code. Some important parameters are: inversion height (Zinv), T @Zinv, qt @Zinv, delta_T @Zinv, delta_qt @Zinv, ...
+- Some parameters can be changed to modify the profiles based on various conditions. Search for the word "parameter" in the code. Some important parameters are: inversion height (Zinv), T @Zinv, qt @Zinv, delta_T @Zinv, delta_qt @Zinv, ...
 
 
 
@@ -17,7 +25,7 @@ Inputs:
 
 
 - Inputs: Tl_ctrl = T_ctrl + g*z/Cp - (L/Cp)*qc, qt_era (= qv+qc), Microwave LWP, ERA Zinv. Note that Tl is the liquid-water static energy divided by Cp, and
-          qt is total water mixing ratio.
+          qt is the total water mixing ratio.
           Note: ctrl refers to the initial ERA5 profile.
 - Choose inversion height, zi: compute inversion height based on ERA ctrl profiles using min of d(RH)/dz*d(THETAL)/dz. 
                                 Alternatively, use MODIS CTH.
@@ -30,7 +38,7 @@ Inputs:
    
    ![image](https://user-images.githubusercontent.com/28571068/114354208-c1f22f80-9b22-11eb-80be-0f83fd212239.png)
    
-   o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion, and extrapolate down to the inversion. 
+   o For zi < z < zi+L_FT, fit a line to the ctrl Tl/qt profiles away from the inversion and extrapolate down to the inversion. 
      This would be: Tl[zind2] = np.polyval(np.polyfit(z[zind], Tl_ctrl[zind], 1), z[zind2]) where zind are the indices where zi+L_FT < z < zi+3*L_FT 
      and zind2 has zi<z<zi+L_FT.  
    
@@ -69,7 +77,7 @@ Inputs:
 
      ![image](https://user-images.githubusercontent.com/28571068/114470180-54d2ae80-9ba3-11eb-973c-e9bf943794a3.png)
 
-     where Trho is density temeprature:
+     where Trho is density temperature:
 
      ![image](https://user-images.githubusercontent.com/28571068/114353678-2660bf00-9b22-11eb-8ac2-09bd2a062c7a.png)
   
@@ -87,7 +95,7 @@ Inputs:
 ### Update, 2020-04-12:
 
 - Make sure that in the FT, d(qt) / d(z) is always negative or zero right above the inversion level.
-- Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid non-physical Tl lapse rate of zero.
+- Remove the equation containing the parameter delta_Tl_inv for the FT profile to avoid a non-physical Tl lapse rate of zero.
 - In addition to Tl_inv, qt_inv, and Zinv, two more variables are added to the minimization function: delta_qt_inv and F. The function changes all these variables in order to find the minimum value of variable "A". This ensures minimum arbitrary assumptions.
 
 
