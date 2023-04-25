@@ -1,4 +1,4 @@
-# Adjusting thermodynamic vertical profiles of reanalysis data
+# Sharpening thermodynamic vertical profiles of reanalysis data
 
 ### Authors:
 - Lead author: Ehsan Erfani @UW
@@ -69,7 +69,7 @@ Without sharpening, the LES might not simulate the Stratocumulus cloud layer. Th
 
   o takes inputs: Tl_ctrl(z), qt_ctrl(z), qt_inv, Tl_inv and ERA Zinv, and
 
-  o follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted).  
+  o follows the above scheme to produce outputs adj Tl(z) and ajd qt(z). (adj: adjusted which is the same as sharpened).  
 
   o Make a second function that:
 
