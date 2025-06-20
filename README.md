@@ -9,7 +9,7 @@
 - See the beginning of each code for the required Python3 libraries.
 
 ### The analyses are featured in:
-Erfani, E., R. Wood, P. Blossey, S. Doherty, R. Eastman, 2022: Using a phase space of environmental variables to drive an ensemble of cloud-resolving simulations of low marine clouds, American Geophysical Union (AGU) Fall Meeting, Chiacago, IL, 12-16 Dec. 2022.
+Erfani, E., Wood, R., Blossey, P., Doherty, S., Eastman, R. (2024). Building a comprehensive library of observed Lagrangian trajectories for testing modeled cloud evolution, aerosol-cloud interactions, and marine cloud brightening, EGUsphere, 1-52, https://doi.org/10.5194/egusphere-2024-3232
 
 ### Description:
 This code utilizes satellite microwave observations of liquid water path (LWP) to modify reanalysis (in particular ERA5) temperature and moisture profiles. 
